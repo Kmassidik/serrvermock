@@ -1,0 +1,232 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "RESTful API - Mock Test",
+      "description": "This is Documentation RESTful API from binar mock test, this documentation very useful to more understand about todo list api, hope you can understand, thanks.",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "k.massidik@gmail.com"
+      },
+      "license": {
+        "name": "Kurnia Massidik - Binar25",
+        "url": "https://www.binaracademy.com/"
+      },
+      "version": "1.0.0"
+    },
+    "externalDocs": {
+      "description": "Find out more about Swagger",
+      "url": "http://swagger.io"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000/api/"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Feature",
+        "description": "you can use to your website"
+      }
+    ],
+    "paths": {
+      "/login": {
+        "post": {
+          "tags": [
+            "Feature"
+          ],
+          "summary": "Login user",
+          "description": "This can only be done by someone has been regis",
+          "operationId": "login",
+          "requestBody": {
+            "description": "Created user object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Login"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Login"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/addTodo": {
+        "post": {
+          "tags": [
+            "Feature"
+          ],
+          "summary": "add new todo list",
+          "description": "This can only be done by someone has been regis",
+          "operationId": "login",
+          "requestBody": {
+            "description": "Created user object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Login"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Login"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/authorization": {
+        "get": {
+          "tags": [
+            "Feature"
+          ],
+          "summary": "check login is authorized",
+          "description": "Please fill the Authorize with the token you get on LOGIN",
+          "operationId": "authorize",
+          "requestBody": {
+            "description": "Check user login has token"
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Login"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Login"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "basicAuth":[]
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Login": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "example": "admin"
+            },
+            "password": {
+              "type": "string",
+              "example": "binar25"
+            },
+            "role": {
+              "type": "string",
+              "example": "admin"
+            }
+          }
+        },
+        "Createroom": {
+          "type": "object",
+          "properties": {
+            "nameRoom": {
+              "type": "string",
+              "example": "room"
+            }
+          }
+        },
+        "Match": {
+          "type": "object",
+          "properties": {
+            "player1": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NjQxMjcxfQ.dxmMr7CCMNcUnO60CvsIK_ptGDGTnOUgjk0-OcWqzmU"
+            },
+            "player2": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY3NjQxMjcxfQ.dxmMr7CCMNcUnO60CvsIK_ptGDGTnOUgjk0-OcWqzmU"
+            },
+            "roomId": {
+              "type": "string",
+              "example": "room_1"
+            },
+            "player1_pick": {
+              "type": "string",
+              "example": "kertas,kertas,kertas"
+            },
+            "player2_pick": {
+              "type": "string",
+              "example": "batu,gunting,kertas"
+            }
+          }
+        }
+      },
+      "requestBodies": {
+        "UserArray": {
+          "description": "List of user object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Login"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
