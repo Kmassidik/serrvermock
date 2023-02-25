@@ -51,7 +51,7 @@ module.exports ={
                 res.json({ success: true })
                 return
             }
-            res.json({ error: "something wrong" })
+            res.statue(500).json({ error: "something wrong" })
         } catch (error) {
             res.send(error)
         }
