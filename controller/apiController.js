@@ -11,10 +11,10 @@ module.exports ={
             res.send(error)
         }
     },
-    login: async(req,res) => {
+    register: async(req,res) => {
         try {
             // take data username dari body
-            const { username } = req.body
+            const { username, password } = req.body
             // cek input username tidak kosong
             if (username.trim() === "") {
                 res.json({ message : 'username still blank'})
@@ -22,16 +22,36 @@ module.exports ={
             }
             const validationData = await dataUsers.find(el => el.username === username)
             let id = dataUsers.length+1
-            const newUser = { id, username }
+            const newUser = { id, username, password }
             // cek username sudah terdaftar
             if (validationData == undefined){
                 dataUsers.push(newUser)
                 fs.writeFileSync('./json/database.json',JSON.stringify(dataUsers))
-                res.json({ message : 'success login'})
+                res.status(200).json({ success: true})
                 return
             }
             // respond ketika username sudah terdaftar
             res.status(500).json({ error: 'try another username' })
+        } catch (error) {
+            res.send(error)
+        }
+    },
+    login: async(req,res) => {
+        try {
+            const { username, password } = req.body
+            if (username.trim() === "") {
+                res.json({ message : 'username still blank'})
+                return
+            }
+            const validationData = await dataUsers.find(el => 
+                el.username === username 
+                && el.password === password
+            )
+            if (validationData) {
+                res.json({ success: true })
+                return
+            }
+            res.json({ error: "something wrong" })
         } catch (error) {
             res.send(error)
         }

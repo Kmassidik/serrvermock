@@ -76,6 +76,53 @@
           }
         }
       },
+      "/register": {
+        "post": {
+          "tags": [
+            "Feature"
+          ],
+          "summary": "Register user",
+          "description": "This can only be done by someone has been regis",
+          "operationId": "register",
+          "requestBody": {
+            "description": "Created user object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/register"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/register"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/register"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/register"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/register"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "/addTodo": {
         "post": {
           "tags": [
@@ -123,12 +170,47 @@
           }
         }
       },
-      "/authorization": {
+      "/list/:username": {
         "get": {
           "tags": [
             "Feature"
           ],
-          "summary": "check login is authorized",
+          "summary": "get all data with parameter username",
+          "description": "Please fill the Authorize with the token you get on LOGIN",
+          "operationId": "authorize",
+          "requestBody": {
+            "description": "Check user login has token"
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Login"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Login"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "basicAuth":[]
+            }
+          ]
+        }
+      },
+      "/list/:username/:id": {
+        "put": {
+          "tags": [
+            "Feature"
+          ],
+          "summary": "change status todolist",
           "description": "Please fill the Authorize with the token you get on LOGIN",
           "operationId": "authorize",
           "requestBody": {
