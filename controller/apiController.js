@@ -13,9 +13,7 @@ module.exports ={
     },
     register: async(req,res) => {
         try {
-            // take data username dari body
             const { username, password } = req.body
-            // cek input username tidak kosong
             if (username.trim() === "") {
                 res.json({ message : 'username still blank'})
                 return
@@ -23,14 +21,12 @@ module.exports ={
             const validationData = await dataUsers.find(el => el.username === username)
             let id = dataUsers.length+1
             const newUser = { id, username, password }
-            // cek username sudah terdaftar
             if (validationData == undefined){
                 dataUsers.push(newUser)
                 fs.writeFileSync('./json/database.json',JSON.stringify(dataUsers))
                 res.status(201).json({ success: true})
                 return
             }
-            // respond ketika username sudah terdaftar
             res.status(409).json({ error: 'try another username' })
         } catch (error) {
             res.send(error)
