@@ -27,11 +27,11 @@ module.exports ={
             if (validationData == undefined){
                 dataUsers.push(newUser)
                 fs.writeFileSync('./json/database.json',JSON.stringify(dataUsers))
-                res.status(200).json({ success: true})
+                res.status(201).json({ success: true})
                 return
             }
             // respond ketika username sudah terdaftar
-            res.status(500).json({ error: 'try another username' })
+            res.status(409).json({ error: 'try another username' })
         } catch (error) {
             res.send(error)
         }
@@ -48,10 +48,10 @@ module.exports ={
                 && el.password === password
             )
             if (validationData) {
-                res.json({ success: true })
+                res.status(200).json({ success: true })
                 return
             }
-            res.statue(500).json({ error: "something wrong" })
+            res.status(401).json({ error: "something wrong" })
         } catch (error) {
             res.send(error)
         }
