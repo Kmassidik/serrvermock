@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require("body-parser");
 const cors = require("cors")
-const serverless = require('serverless-http')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -53,4 +52,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = serverless(app);
+module.exports = app;
