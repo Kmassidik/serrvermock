@@ -79,7 +79,7 @@ module.exports ={
             const {username} = req.params
             const authen = await dataTodo.find(todo => todo.username == username)
             if (authen == undefined) {
-                return res.json({ error : "data not found"})   
+                return res.status(404)   
             }
             const todoItem = await dataTodo.filter(todo => todo.username == username)
             res.json(todoItem)
